@@ -28,6 +28,8 @@ Enhancements:
   ported from `rspec-fire` (Xavier Shay).
 * Improved performance of double creation, particularly those with many
   attributes. (Xavier Shay)
+* Messages can be allowed or expected on in bulk via
+  `receive_messages(:message => :value)` (Jon Rowe)
 
 ### 2.14.3 / 2013-08-08
 [full changelog](http://github.com/rspec/rspec-mocks/compare/v2.14.2...v2.14.3)
