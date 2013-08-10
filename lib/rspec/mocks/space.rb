@@ -60,6 +60,10 @@ module RSpec
 
       alias ensure_registered proxy_for
 
+      def proxied_instances_of(klass)
+        proxies.select { |_, proxy| proxy.object.is_a? klass }.map { |_, proxy| proxy }
+      end
+
       def registered?(object)
         proxies.has_key?(id_for object)
       end
