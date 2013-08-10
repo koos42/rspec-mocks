@@ -72,6 +72,9 @@ module RSpec
             raise RSpec::Mocks::MockExpectationError, "The method `#{method_name}` was not stubbed or was already unstubbed"
           end
           message_chains.remove_stub_chains_for!(method_name)
+          for proxy in ::RSpec::Mocks.proxied_instances_of(@klass)
+            proxy.remove_stub(method_name)
+          end
           stop_observing!(method_name) unless message_chains.has_expectation?(method_name)
         end
 
