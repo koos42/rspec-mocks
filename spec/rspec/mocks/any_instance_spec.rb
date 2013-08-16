@@ -323,6 +323,23 @@ module RSpec
           end
         end
 
+        context "with counts" do
+          it "fails if the method is called the specified number of times" do
+            klass.any_instance.should_not_receive(:existing_method).once
+            expect {
+              klass.new.existing_method
+            }.to raise_error(RSpec::Mocks::MockExpectationError)
+          end
+
+          it "passes if the method is called a different number of times" do
+            klass.any_instance.should_not_receive(:existing_method).once
+            expect do
+              klass.new.existing_method
+              klass.new.existing_method
+            end.to_not raise_error
+          end
+        end
+
         context 'when used in combination with should_receive' do
           it 'passes if only the expected message is received' do
             klass.any_instance.should_receive(:foo)
